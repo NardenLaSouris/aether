@@ -1,0 +1,17 @@
+{
+  "id": "limites",
+  "name": "Limites Claude",
+  "version": "1.0.0",
+  "description": "Où vous en êtes dans vos limites d’usage Claude (session de 5 heures, semaine), avec l’heure de remise à zéro, sous la liste des conversations. Chiffres de Claude Code uniquement.",
+  "author": "Aether",
+  "permissions": ["quota.read"],
+  "panels": [
+    {
+      "id": "jauges",
+      "title": "Limites Claude",
+      "entry": "panel.html",
+      "embed": "conversation-list",
+      "embedHeight": 116
+    }
+  ]
+}

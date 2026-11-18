@@ -1,0 +1,36 @@
+# Windows packaging. productName / appId must match src/shared/appConfig.ts when rebranding.
+appId: com.aether.desktop
+productName: Aether
+copyright: Copyright © 2026 Aether
+directories:
+  output: dist
+  buildResources: build
+files:
+  - out/**
+  - resources/**
+  - package.json
+  # The SDK ships its own 340 MB Claude Code binary; Aether uses the Claude Code installed on the machine instead.
+  - '!node_modules/@anthropic-ai/claude-agent-sdk-*/**'
+  - '!**/*.map'
+  - '!**/{README,CHANGELOG}.md'
+asar: true
+win:
+  target:
+    - target: nsis
+      arch: [x64]
+  icon: build/icon.ico
+  executableName: Aether
+  artifactName: ${productName}-Setup-${version}.${ext}
+nsis:
+  oneClick: false
+  perMachine: false
+  allowToChangeInstallationDirectory: true
+  createDesktopShortcut: true
+  createStartMenuShortcut: true
+  shortcutName: Aether
+  uninstallDisplayName: Aether
+  installerIcon: build/icon.ico
+  uninstallerIcon: build/icon.ico
+  # User data (%APPDATA%\Aether) is kept on uninstall.
+  deleteAppDataOnUninstall: false
+npmRebuild: false

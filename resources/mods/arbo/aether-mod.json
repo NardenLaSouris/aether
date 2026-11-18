@@ -1,0 +1,24 @@
+{
+  "id": "arbo",
+  "name": "Arbo",
+  "version": "1.0.0",
+  "description": "Graphe des commits et branches du dépôt git de la conversation. Commande : /arbo",
+  "author": "Aether",
+  "permissions": ["git.read", "context.read"],
+  "panels": [
+    {
+      "id": "graph",
+      "title": "Arbo — graphe git",
+      "entry": "panel.html",
+      "defaultPosition": "floating",
+      "defaultSize": { "width": 560, "height": 460 }
+    }
+  ],
+  "commands": [
+    {
+      "name": "arbo",
+      "description": "Ouvre le graphe git du dépôt de la conversation",
+      "opensPanel": "graph"
+    }
+  ]
+}

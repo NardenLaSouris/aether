@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <title>Arbo</title>
+    <link rel="stylesheet" href="panel.css" />
+    <script src="aether-mod://sdk/aether-mod.js"></script>
+    <script src="graph.js"></script>
+    <script src="panel.js" defer></script>
+  </head>
+  <body>
+    <header class="toolbar">
+      <div class="repository">
+        <span id="repository-name" class="repository-name">—</span>
+        <span id="branch" class="branch" hidden></span>
+      </div>
+      <span id="summary" class="summary"></span>
+      <button id="refresh" type="button" title="Actualiser">↻</button>
+    </header>
+    <main id="content">
+      <p class="message">Chargement…</p>
+    </main>
+  </body>
+</html>

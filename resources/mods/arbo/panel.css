@@ -1,0 +1,159 @@
+:root {
+  --canvas: #121513;
+  --panel: #181b19;
+  --line: rgba(244, 239, 228, 0.08);
+  --ink: #e9e3d6;
+  --ink-muted: #a9ad9f;
+  --ink-faint: #6f7a72;
+  --gold: #c4a96a;
+  --sage: #86a18b;
+  color-scheme: dark;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  height: 100%;
+  background: var(--canvas);
+  color: var(--ink);
+  font: 12.5px/1.4 'Segoe UI Variable Text', 'Segoe UI', system-ui, sans-serif;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+}
+
+.toolbar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 7px 10px;
+  border-bottom: 1px solid var(--line);
+  background: var(--panel);
+  flex-shrink: 0;
+}
+
+.repository {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+}
+
+.repository-name {
+  font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.branch {
+  padding: 1px 7px;
+  border: 1px solid rgba(196, 169, 106, 0.4);
+  border-radius: 999px;
+  color: var(--gold);
+  font-size: 11px;
+  white-space: nowrap;
+}
+
+.summary {
+  margin-left: auto;
+  color: var(--ink-faint);
+  font-size: 11px;
+  white-space: nowrap;
+}
+
+button {
+  border: 1px solid var(--line);
+  background: transparent;
+  color: var(--ink-muted);
+  border-radius: 6px;
+  width: 26px;
+  height: 26px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+button:hover {
+  color: var(--ink);
+  border-color: rgba(244, 239, 228, 0.2);
+}
+
+main {
+  flex: 1;
+  overflow: auto;
+}
+
+.message {
+  margin: 0;
+  padding: 24px 16px;
+  color: var(--ink-muted);
+  text-align: center;
+}
+
+.message.error {
+  color: #e07a6b;
+}
+
+.graph {
+  position: relative;
+}
+
+.graph svg {
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  height: 26px;
+  padding-right: 10px;
+  white-space: nowrap;
+}
+
+.row:hover {
+  background: rgba(244, 239, 228, 0.04);
+}
+
+.hash {
+  font-family: 'Cascadia Mono', Consolas, monospace;
+  font-size: 11px;
+  color: var(--ink-faint);
+}
+
+.subject {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  min-width: 0;
+  flex: 1;
+}
+
+.meta {
+  color: var(--ink-faint);
+  font-size: 11px;
+}
+
+.ref {
+  padding: 0 6px;
+  border-radius: 4px;
+  font-size: 10.5px;
+  border: 1px solid rgba(134, 161, 139, 0.45);
+  color: var(--sage);
+}
+
+.ref.head {
+  border-color: rgba(196, 169, 106, 0.6);
+  color: var(--gold);
+}
+
+.ref.tag {
+  border-style: dashed;
+}

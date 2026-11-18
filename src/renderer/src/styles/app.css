@@ -1,0 +1,220 @@
+@import 'tailwindcss';
+
+/* ------------------------------------------------------------------------
+   Aether design system
+   Brand palette: forest #0F3D2E · sage #86A18B · charcoal #1A1C1B · cream #F4EFE4 · gold #C4A96A
+   Semantic tokens are CSS variables so themes can swap them.
+   ------------------------------------------------------------------------ */
+
+@theme {
+  --color-forest: #0f3d2e;
+  --color-forest-deep: #0a2a20;
+  --color-forest-night: #0c1a15;
+  --color-sage: #86a18b;
+  --color-charcoal: #1a1c1b;
+  --color-cream: #f4efe4;
+  --color-gold: #c4a96a;
+
+  --color-canvas: var(--surface-canvas);
+  --color-panel: var(--surface-panel);
+  --color-raised: var(--surface-raised);
+  --color-sunken: var(--surface-sunken);
+  --color-sidebar: var(--surface-sidebar);
+  --color-line: var(--border-subtle);
+  --color-line-strong: var(--border-strong);
+  --color-ink: var(--text-primary);
+  --color-ink-muted: var(--text-muted);
+  --color-ink-faint: var(--text-faint);
+  --color-accent: var(--accent);
+  --color-accent-soft: var(--accent-soft);
+  --color-success: #7fb48a;
+  --color-warning: #d9a85b;
+  --color-danger: #d27a6a;
+  --color-danger-soft: rgba(210, 122, 106, 0.12);
+  --color-info: #8fb3c2;
+
+  --font-sans: 'Segoe UI Variable Text', 'Segoe UI', 'Inter', system-ui, sans-serif;
+  --font-display: 'Segoe UI Variable Display', 'Segoe UI', system-ui, sans-serif;
+  --font-mono: 'Cascadia Code', 'Cascadia Mono', 'JetBrains Mono', Consolas, monospace;
+
+  --radius-sm: 6px;
+  --radius-md: 9px;
+  --radius-lg: 14px;
+
+  --shadow-panel: 0 1px 0 rgba(244, 239, 228, 0.04) inset, 0 12px 32px -12px rgba(0, 0, 0, 0.55);
+  --shadow-pop: 0 18px 48px -12px rgba(0, 0, 0, 0.7), 0 0 0 1px rgba(196, 169, 106, 0.12);
+
+  --animate-fade-in: fade-in 160ms ease-out;
+  --animate-rise: rise 180ms cubic-bezier(0.2, 0.8, 0.2, 1);
+  --animate-pulse-soft: pulse-soft 1.6s ease-in-out infinite;
+
+  @keyframes fade-in {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  @keyframes rise {
+    from { opacity: 0; transform: translateY(6px) scale(0.99); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
+  }
+  @keyframes pulse-soft {
+    0%, 100% { opacity: 0.45; }
+    50% { opacity: 1; }
+  }
+}
+
+:root,
+[data-theme='forest'] {
+  --surface-canvas: #0d1a15;
+  --surface-sidebar: #0f3d2e;
+  --surface-panel: #1a1c1b;
+  --surface-raised: #222624;
+  --surface-sunken: #141716;
+  --border-subtle: rgba(244, 239, 228, 0.08);
+  --border-strong: rgba(244, 239, 228, 0.16);
+  --text-primary: #f4efe4;
+  --text-muted: rgba(244, 239, 228, 0.68);
+  --text-faint: rgba(244, 239, 228, 0.42);
+  --accent: #c4a96a;
+  --accent-soft: rgba(196, 169, 106, 0.14);
+  color-scheme: dark;
+}
+
+[data-theme='charcoal'] {
+  --surface-canvas: #141615;
+  --surface-sidebar: #10251d;
+  --surface-panel: #1a1c1b;
+  --surface-raised: #232624;
+  --surface-sunken: #111312;
+  --border-subtle: rgba(244, 239, 228, 0.07);
+  --border-strong: rgba(244, 239, 228, 0.14);
+  --text-primary: #f4efe4;
+  --text-muted: rgba(244, 239, 228, 0.66);
+  --text-faint: rgba(244, 239, 228, 0.4);
+  --accent: #c4a96a;
+  --accent-soft: rgba(196, 169, 106, 0.12);
+  color-scheme: dark;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--surface-canvas);
+  color: var(--text-primary);
+  font-family: var(--font-sans);
+  font-size: 14px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  overflow: hidden;
+  user-select: none;
+}
+
+::selection {
+  background: rgba(196, 169, 106, 0.32);
+}
+
+.selectable,
+.selectable * {
+  user-select: text;
+}
+
+.drag-region {
+  -webkit-app-region: drag;
+}
+.no-drag {
+  -webkit-app-region: no-drag;
+}
+
+/* Scrollbars */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(244, 239, 228, 0.16) transparent;
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* While a panel is dragged or resized, mod frames must not catch the pointer. */
+body.aether-dragging iframe,
+body.aether-dragging webview {
+  pointer-events: none;
+}
+body.aether-dragging {
+  user-select: none;
+}
+
+/* Text fields show their own focus state (or none, like the message box): no gold outline. */
+textarea:focus-visible,
+input:focus-visible,
+select:focus-visible {
+  outline: none;
+}
+
+/* ------------------------------------------------------------------------
+   Markdown rendering
+   ------------------------------------------------------------------------ */
+.prose-aether {
+  color: var(--text-primary);
+  font-size: 14px;
+  line-height: 1.65;
+  word-wrap: break-word;
+}
+.prose-aether > :first-child { margin-top: 0; }
+.prose-aether > :last-child { margin-bottom: 0; }
+.prose-aether p { margin: 0.55em 0; }
+.prose-aether h1, .prose-aether h2, .prose-aether h3, .prose-aether h4 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  margin: 1.1em 0 0.45em;
+  line-height: 1.3;
+}
+.prose-aether h1 { font-size: 1.35em; }
+.prose-aether h2 { font-size: 1.2em; }
+.prose-aether h3 { font-size: 1.06em; }
+.prose-aether a { color: var(--accent); text-decoration: underline; text-underline-offset: 2px; }
+.prose-aether ul, .prose-aether ol { padding-left: 1.4em; margin: 0.5em 0; }
+.prose-aether ul { list-style: disc; }
+.prose-aether ol { list-style: decimal; }
+.prose-aether li { margin: 0.2em 0; }
+.prose-aether li::marker { color: var(--color-sage); }
+.prose-aether blockquote {
+  border-left: 2px solid var(--accent);
+  margin: 0.8em 0;
+  padding: 0.1em 0 0.1em 0.9em;
+  color: var(--text-muted);
+}
+.prose-aether hr { border: 0; border-top: 1px solid var(--border-subtle); margin: 1.2em 0; }
+.prose-aether :not(pre) > code {
+  font-family: var(--font-mono);
+  font-size: 0.88em;
+  background: rgba(134, 161, 139, 0.14);
+  color: #e7dcc2;
+  padding: 0.12em 0.38em;
+  border-radius: 5px;
+}
+.prose-aether table { border-collapse: collapse; margin: 0.8em 0; font-size: 0.93em; display: block; overflow-x: auto; }
+.prose-aether th, .prose-aether td { border: 1px solid var(--border-subtle); padding: 0.4em 0.7em; text-align: left; }
+.prose-aether th { background: var(--surface-raised); font-weight: 600; }
+.prose-aether pre { margin: 0; }
+
+/* Syntax highlighting (highlight.js classes) tuned to the palette */
+.hljs { color: #e9e3d6; background: transparent; }
+.hljs-comment, .hljs-quote { color: #6f7d73; font-style: italic; }
+.hljs-keyword, .hljs-selector-tag, .hljs-literal, .hljs-section, .hljs-doctag { color: #c4a96a; }
+.hljs-string, .hljs-regexp, .hljs-addition, .hljs-attribute, .hljs-meta .hljs-string { color: #9fc39f; }
+.hljs-number, .hljs-symbol, .hljs-bullet, .hljs-variable.constant_ { color: #d9a07b; }
+.hljs-title, .hljs-title.function_, .hljs-title.class_ { color: #e8d7a7; }
+.hljs-built_in, .hljs-type, .hljs-params { color: #a9c4c9; }
+.hljs-attr, .hljs-property, .hljs-variable, .hljs-template-variable { color: #c9b8e0; }
+.hljs-meta, .hljs-tag, .hljs-name { color: #86a18b; }
+.hljs-deletion { color: #d27a6a; }
+.hljs-emphasis { font-style: italic; }
+.hljs-strong { font-weight: 600; }
